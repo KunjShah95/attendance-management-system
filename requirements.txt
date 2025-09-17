@@ -1,0 +1,12 @@
+opencv-contrib-python>=4.8.0
+numpy
+pandas
+Pillow
+Flask
+flask-cors
+APScheduler
+python-dotenv
+streamlit
+streamlit-aggrid
+requests
+openpyxl
