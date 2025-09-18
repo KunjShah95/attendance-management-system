@@ -30,18 +30,29 @@ def load_labels(path="model/labels.pickle"):
 
 
 def ensure_db(db_path):
-    # Dummy implementation, replace with actual DB initialization if needed
+    # Resolve db_path relative to this file to avoid working-dir issues
+    if not os.path.isabs(db_path):
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_path)
+
+    # Create DB file and table if missing
     if not os.path.exists(db_path):
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
-        c.execute("""CREATE TABLE IF NOT EXISTS attendance
-					 (id INTEGER, name TEXT, date TEXT, time TEXT)""")
+        c.execute(
+            """CREATE TABLE IF NOT EXISTS attendance
+                        (id INTEGER, name TEXT, date TEXT, time TEXT)"""
+        )
         conn.commit()
         conn.close()
+    # Small debug trace
+    print(f"[utils] ensure_db using: {db_path}")
 
 
 def mark_attendance_db(id_val: int, name: str, db_path: str = "attendance.db") -> bool:
     """Insert attendance for today if not already present. Returns True if inserted, False if already present."""
+    # Resolve and ensure DB
+    if not os.path.isabs(db_path):
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_path)
     ensure_db(db_path)
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
@@ -52,6 +63,9 @@ def mark_attendance_db(id_val: int, name: str, db_path: str = "attendance.db") -
     exists = cur.fetchone()
     if exists:
         conn.close()
+        print(
+            f"[utils] attendance already exists for id={id_val} on {today} (db={db_path})"
+        )
         return False
     now = datetime.datetime.now().strftime("%H:%M:%S")
     cur.execute(
@@ -60,10 +74,16 @@ def mark_attendance_db(id_val: int, name: str, db_path: str = "attendance.db") -
     )
     conn.commit()
     conn.close()
+    print(
+        f"[utils] marked attendance for id={id_val} name={name} on {today} at {now} (db={db_path})"
+    )
     return True
 
 
 def get_attendance(db_path="attendance.db", date_str: str = None):
+    # Resolve db_path relative to this file
+    if not os.path.isabs(db_path):
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_path)
     ensure_db(db_path)
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()

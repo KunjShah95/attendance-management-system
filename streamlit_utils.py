@@ -58,7 +58,13 @@ def export_csv(date_str: str = None):
 
 
 def recognize_and_mark(
-    image_bytes, model_dir="model", db_path="attendance.db", threshold=70
+    image_bytes,
+    model_dir="model",
+    db_path="attendance.db",
+    threshold=70,
+    scaleFactor=1.1,
+    minNeighbors=5,
+    minSize=(60, 60),
 ):
     """Try to recognize faces in the uploaded image_bytes. If a face matches, mark attendance and return results list.
     Returns list of dicts: [{id, name, confidence, marked(bool)}]
@@ -97,7 +103,7 @@ def recognize_and_mark(
         cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     )
     faces = detector.detectMultiScale(
-        gray, scaleFactor=1.1, minNeighbors=5, minSize=(60, 60)
+        gray, scaleFactor=scaleFactor, minNeighbors=minNeighbors, minSize=minSize
     )
 
     results = []
@@ -120,16 +126,9 @@ def recognize_and_mark(
                     "name": name,
                     "confidence": float(conf),
                     "marked": marked,
+                    "debug": f"Recognized label_id={label_id}, conf={conf:.1f} < {threshold}",
                 }
             )
-        else:
-            results.append(
-                {
-                    "id": None,
-                    "name": "Unknown",
-                    "confidence": float(conf),
-                    "marked": False,
-                }
-            )
+        # Skip unrecognized faces - don't add them to results
 
     return results

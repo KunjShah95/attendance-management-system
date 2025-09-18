@@ -5,5 +5,3 @@ attendance.db
 unknowns/
 dataset/*.db
 *.pyc
-.vscode/
-.DS_Store
