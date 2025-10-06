@@ -1,0 +1,36 @@
+@startuml
+title Attendance Management System - Architecture
+left to right direction
+
+actor User
+
+package "Interface" {
+  [CLI / Scripts] as CLI
+  [(Optional) Web UI] as WebUI
+}
+
+package "Application" {
+  [Importer] as Importer
+  [Attendance Service] as AttendanceSvc
+  [Student Service] as StudentSvc
+}
+
+package "Persistence" {
+  database "SQLite DB\n(attendance.db)" as DB
+}
+
+User --> CLI : runs commands
+User --> WebUI : optional
+CLI --> Importer : reads CSV
+Importer --> StudentSvc : create/update students
+CLI --> AttendanceSvc : mark attendance
+AttendanceSvc --> DB : write attendance records
+StudentSvc --> DB : read/write students
+
+note right of DB
+Schema (example):
+ - students(id, name, ...)
+ - attendance(id, student_id, date, marked_at)
+end note
+
+@enduml
