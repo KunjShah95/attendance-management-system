@@ -73,7 +73,7 @@ def recognize_and_mark(
         import cv2
         import numpy as np
         import pickle
-        from utils import load_labels, mark_attendance_db, ensure_dir
+        from utils import load_labels, mark_attendance_db, ensure_dir, load_students
     except Exception as e:
         return {"error": f"Missing imaging dependencies: {e}"}
 
@@ -99,34 +99,103 @@ def recognize_and_mark(
         return {"error": "Could not decode uploaded image"}
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Dynamically compute a reasonable minSize based on image height to handle small camera_input frames
+    try:
+        ih, iw = gray.shape[:2]
+        # target minimum face height ~8% of image height, bounded
+        dyn_min = max(20, int(ih * 0.08))
+        # if caller passed a small minSize, override with dynamic value
+        if isinstance(minSize, tuple) and (
+            minSize[0] < dyn_min or minSize[1] < dyn_min
+        ):
+            minSize = (dyn_min, dyn_min)
+    except Exception:
+        pass
     detector = cv2.CascadeClassifier(
         cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     )
+
+    # Primary detection pass using provided parameters
     faces = detector.detectMultiScale(
         gray, scaleFactor=scaleFactor, minNeighbors=minNeighbors, minSize=minSize
     )
 
+    # If no faces found, try a few fallback parameter sets (more permissive)
+    if len(faces) == 0:
+        fallback_params = [
+            (1.05, 5, (30, 30)),
+            (1.01, 3, (20, 20)),
+            (1.3, 3, (50, 50)),
+        ]
+        for sf, mn, ms in fallback_params:
+            faces = detector.detectMultiScale(
+                gray, scaleFactor=sf, minNeighbors=mn, minSize=ms
+            )
+            if len(faces) > 0:
+                # record chosen params for debug
+                chosen_params = (sf, mn, ms)
+                break
+        else:
+            chosen_params = None
+    else:
+        chosen_params = (scaleFactor, minNeighbors, minSize)
+
     results = []
     if len(faces) == 0:
-        return {"error": "No faces detected in image"}
+        # No faces detected; return empty list (not an error) so callers can treat as 'no recognized faces'
+        return []
 
     for x, y, w, h in faces:
         face_gray = gray[y : y + h, x : x + w]
+        # Normalize face size for recognizer (helps LBPH matching stability)
+        try:
+            face_gray = cv2.resize(face_gray, (200, 200))
+        except Exception:
+            pass
         try:
             label_id, conf = recognizer.predict(face_gray)
         except Exception:
             label_id, conf = None, 999
 
         if label_id is not None and conf < threshold:
-            name = labels.get(label_id, f"ID_{label_id}")
-            marked = mark_attendance_db(label_id, name, db_path)
+            # label_name comes from the labels.pickle mapping created during training
+            label_name = labels.get(label_id, f"ID_{label_id}")
+
+            # Attempt to find the corresponding student id from students.csv (or API via load_students)
+            # Matching is tolerant: exact match OR substring match (handles 'kunj' vs 'kunjshah', trailing spaces, case differences)
+            student_id = None
+            student_name = None
+            try:
+                students_list = load_students()
+            except Exception:
+                students_list = []
+
+            lname = label_name.strip().lower()
+            for s in students_list:
+                sname = str(s.get("name", "")).strip().lower()
+                if not sname:
+                    continue
+                if lname == sname or lname in sname or sname in lname:
+                    student_id = s.get("id")
+                    student_name = s.get("name").strip()
+                    break
+
+            # If we couldn't find a matching student, fall back to using the recognizer label id
+            if student_id is None:
+                student_id = label_id
+                student_name = label_name
+                debug_note = f"Recognized label_id={label_id} ('{label_name}'), no CSV match; using label_id as id"
+            else:
+                debug_note = f"Recognized label_id={label_id} ('{label_name}') -> matched CSV id={student_id} name='{student_name}'"
+
+            marked = mark_attendance_db(student_id, student_name, db_path)
             results.append(
                 {
-                    "id": label_id,
-                    "name": name,
+                    "id": student_id,
+                    "name": student_name,
                     "confidence": float(conf),
                     "marked": marked,
-                    "debug": f"Recognized label_id={label_id}, conf={conf:.1f} < {threshold}",
+                    "debug": f"{debug_note}; conf={conf:.1f} < {threshold}",
                 }
             )
         # Skip unrecognized faces - don't add them to results

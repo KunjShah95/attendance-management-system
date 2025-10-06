@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management System - Architecture Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .diagram-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+        
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .legend-item {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-weight: 500;
+        }
+        
+        .legend-item.input {
+            background: #e1f5ff;
+            border-color: #01579b;
+            color: #01579b;
+        }
+        
+        .legend-item.processing {
+            background: #f3e5f5;
+            border-color: #4a148c;
+            color: #4a148c;
+        }
+        
+        .legend-item.model {
+            background: #fff3e0;
+            border-color: #e65100;
+            color: #e65100;
+        }
+        
+        .legend-item.data {
+            background: #e8f5e9;
+            border-color: #1b5e20;
+            color: #1b5e20;
+        }
+        
+        .legend-item.interface {
+            background: #fce4ec;
+            border-color: #880e4f;
+            color: #880e4f;
+        }
+        
+        .legend-item.utils {
+            background: #f1f8e9;
+            border-color: #33691e;
+            color: #33691e;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Attendance Management System</h1>
+        <div class="subtitle">System Architecture Diagram</div>
+        
+        <div class="info">
+            <h3>📋 About This Diagram</h3>
+            <p>
+                This interactive diagram illustrates the complete architecture of the Attendance Management System,
+                showing all major components, data flows, and interactions between different layers of the application.
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="mermaid.initialize({ startOnLoad: true }); location.reload();">
+                🔄 Reload Diagram
+            </button>
+            <a href="README.md" class="btn btn-secondary">📖 View Documentation</a>
+            <a href="https://github.com/KunjShah95/attendance-management-system" class="btn btn-secondary" target="_blank">
+                🔗 GitHub Repository
+            </a>
+        </div>
+        
+        <div class="diagram-container">
+            <div class="mermaid">
+flowchart TB
+    subgraph Input["📹 Input Layer"]
+        CAM["Webcam/Camera Feed"]
+        DATASET["Dataset Images<br/>dataset/"]
+    end
+
+    subgraph Processing["⚙️ Processing Layer"]
+        DETECT["Haar Cascade<br/>Face Detector"]
+        TRAIN["LBPH Trainer<br/>train.py"]
+        RECOG["LBPH Recognizer<br/>attendance_runner.py"]
+    end
+
+    subgraph Model["🤖 Model Layer"]
+        TRAINER["trainer.yml<br/>Trained Model"]
+        LABELS["labels.pickle<br/>ID-Name Mapping"]
+    end
+
+    subgraph Data["💾 Data Layer"]
+        DB[("attendance.db<br/>SQLite Database")]
+        CSV["students.csv<br/>Student Roster"]
+        SMTP["smtp_config.json<br/>Email Config"]
+    end
+
+    subgraph Interface["🖥️ Interface Layer"]
+        UI["Streamlit Dashboard<br/>streamlit_app.py"]
+        API["Flask REST API<br/>app.py"]
+    end
+
+    subgraph Utils["🔧 Utility Layer"]
+        UTIL["utils.py<br/>Helper Functions"]
+    end
+
+    %% Training Flow
+    DATASET -->|Images| DETECT
+    DETECT -->|Face Crops| TRAIN
+    TRAIN -->|Generates| TRAINER
+    TRAIN -->|Generates| LABELS
+
+    %% Recognition Flow
+    CAM -->|Live Frame| DETECT
+    DETECT -->|Face ROI| RECOG
+    TRAINER -->|Model Data| RECOG
+    LABELS -->|Name Lookup| RECOG
+    RECOG -->|Mark Attendance| DB
+
+    %% Data Management
+    CSV -->|Student Info| UI
+    CSV -->|Student Info| API
+    DB -->|Read/Write| UI
+    DB -->|Read/Write| API
+    SMTP -->|Email Config| UI
+
+    %% Utility Layer
+    UTIL -->|DB Operations| DB
+    UTIL -->|CSV Parsing| CSV
+    UTIL -->|Email Service| SMTP
+    UTIL -->|Support Functions| UI
+    UTIL -->|Support Functions| API
+    UTIL -->|Support Functions| RECOG
+
+    %% User Interactions
+    USER(["👤 Administrator"]) -.->|Access| UI
+    USER -.->|API Requests| API
+    ADMIN(["👤 End User"]) -.->|Face Input| CAM
+
+    style Input fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style Processing fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style Model fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style Data fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    style Interface fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style Utils fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>🎨 Component Legend</h3>
+            <div class="legend">
+                <div class="legend-item input">
+                    <strong>📹 Input Layer</strong><br>
+                    Camera feed and training dataset
+                </div>
+                <div class="legend-item processing">
+                    <strong>⚙️ Processing Layer</strong><br>
+                    Face detection and recognition logic
+                </div>
+                <div class="legend-item model">
+                    <strong>🤖 Model Layer</strong><br>
+                    Trained ML models and mappings
+                </div>
+                <div class="legend-item data">
+                    <strong>💾 Data Layer</strong><br>
+                    Database and configuration files
+                </div>
+                <div class="legend-item interface">
+                    <strong>🖥️ Interface Layer</strong><br>
+                    User interfaces and APIs
+                </div>
+                <div class="legend-item utils">
+                    <strong>🔧 Utility Layer</strong><br>
+                    Helper functions and services
+                </div>
+            </div>
+        </div>
+
+        <div class="info">
+            <h3>🔄 Data Flow Overview</h3>
+            <ol>
+                <li><strong>Training Phase:</strong> Dataset images → Face detection → LBPH training → Model generation</li>
+                <li><strong>Recognition Phase:</strong> Live camera → Face detection → Face matching → Attendance marking</li>
+                <li><strong>Management Phase:</strong> Admin interface → Database queries → Data visualization/export</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p><strong>Attendance Management System</strong> | Version 1.0</p>
+            <p>Built with ❤️ by <a href="https://github.com/KunjShah95" target="_blank">Kunj Shah</a></p>
+            <p>
+                <a href="https://github.com/KunjShah95/attendance-management-system" target="_blank">View on GitHub</a> |
+                <a href="README.md">Documentation</a> |
+                <a href="LICENSE">MIT License</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                fontSize: '16px'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

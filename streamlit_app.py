@@ -222,6 +222,81 @@ elif page == "Attendance":
             "📹 Camera is active. Face detection will run automatically when faces are detected."
         )
 
+        # --- Diagnostics panel (helps debug why Streamlit environment may differ) ---
+        with st.expander("Diagnostics (click to expand)"):
+            st.write(
+                "This panel shows runtime diagnostics to help troubleshoot Streamlit vs VS Code differences."
+            )
+            try:
+                import sys
+
+                st.write(f"Python executable: `{sys.executable}`")
+                st.write(f"sys.path (first 5 entries): `{sys.path[:5]}`")
+            except Exception as _:
+                st.write("Could not read Python executable or sys.path")
+
+            # OpenCV / cv2 checks
+            try:
+                import cv2
+
+                st.write(f"OpenCV version: `{cv2.__version__}`")
+                # check for face module availability (opencv-contrib)
+                has_face = hasattr(cv2, "face")
+                st.write(f"cv2.face available: `{has_face}`")
+            except Exception as e:
+                st.error(f"OpenCV import error: {e}")
+                has_face = False
+
+            # Cascade file check
+            try:
+                cascade_path = (
+                    cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+                )
+                st.write(f"Cascade expected path: `{cascade_path}`")
+                st.write(f"Cascade exists: `{os.path.exists(cascade_path)}`")
+            except Exception:
+                st.write("Cascade check skipped (cv2 missing)")
+
+            # Model files check (if using model folder)
+            try:
+                model_dir = os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)), "model"
+                )
+                st.write(f"Model dir: `{model_dir}`")
+                st.write(
+                    f"trainer.yml present: `{os.path.exists(os.path.join(model_dir, 'trainer.yml'))}`"
+                )
+                st.write(
+                    f"labels.pickle present: `{os.path.exists(os.path.join(model_dir, 'labels.pickle'))}`"
+                )
+            except Exception:
+                st.write("Model files check skipped")
+
+            # Quick camera test using OpenCV VideoCapture (only runs on server with camera hardware)
+            try:
+                if "cv2" in globals() or "cv2" in locals():
+                    cap = cv2.VideoCapture(0)
+                    if cap is None or not cap.isOpened():
+                        st.warning(
+                            "VideoCapture(0) NOT available from Streamlit server process (likely permission or absent camera)"
+                        )
+                    else:
+                        ret, frame = cap.read()
+                        if ret and frame is not None:
+                            st.success(
+                                "VideoCapture: frame retrieved from camera (server-side)."
+                            )
+                            # release quickly
+                            cap.release()
+                        else:
+                            st.warning("VideoCapture opened but no frame retrieved.")
+                else:
+                    st.info(
+                        "Skipping server-side VideoCapture check because cv2 is not available in this process."
+                    )
+            except Exception as e:
+                st.write(f"VideoCapture check error: {e}")
+
         # Camera input for continuous monitoring
         camera_input = st.camera_input("Live Camera Feed", key="live_camera")
 
