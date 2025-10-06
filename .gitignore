@@ -1,7 +1,248 @@
+# ==========================================
+# Python
+# ==========================================
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+*.pyo
+*.pyd
+
+# Build & Distribution
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.whl
+*.tar.gz
+*.zip
+
+# ==========================================
+# Virtual Environments
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+.virtualenv
+virtualenv/
+
+# ==========================================
+# Environment Variables & Secrets (IMPORTANT!)
+# ==========================================
+.env
+.env.local
+.env.*.local
+smtp_config.json
+config.json
+secrets.json
+*.pem
+*.key
+credentials/
+secrets/
+private/
+
+# Allow .env.example (template file)
+!.env.example
+
+# ==========================================
+# Database Files
+# ==========================================
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+attendance.db
+attendance.db.bak
+dataset/*.db
+
+# ==========================================
+# Model Files
+# ==========================================
 model/trainer.yml
 model/labels.pickle
-attendance.db
+*.pkl
+*.pickle
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# ==========================================
+# Dataset & Media
+# ==========================================
 unknowns/
-dataset/*.db
-*.pyc
+dataset/
+dataset/**/
+dataset/**/*
+
+# Large video files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+
+# ==========================================
+# Backup Files
+# ==========================================
+*.bak
+*.backup
+*.old
+*.csv.bak
+students.csv.bak
+*~
+
+# ==========================================
+# IDE & Editors
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==========================================
+# Logs
+# ==========================================
+*.log
+*.log.*
+streamlit.log
+logs/
+log/
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+coverage.xml
+*.cover
+.cache
+nosetests.xml
+test-results/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+.pyre/
+
+# ==========================================
+# Jupyter Notebook
+# ==========================================
+.ipynb_checkpoints
+*.ipynb
+jupyter_config/
+.jupyter/
+
+# ==========================================
+# Flask Specific
+# ==========================================
+instance/
+.webassets-cache
+flask_session/
+
+# ==========================================
+# Streamlit Specific
+# ==========================================
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# ==========================================
+# Frontend (if applicable)
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnp.*
+.npm
+.yarn-integrity
+
+# ==========================================
+# Temporary Files
+# ==========================================
+tmp/
+temp/
+*.tmp
+*.temp
+debug_*.jpg
+debug_*.png
+test_*.jpg
+
+# ==========================================
+# Documentation Build
+# ==========================================
+docs/_build/
+docs/.doctrees/
+site/
+
+# ==========================================
+# Security & Certificates
+# ==========================================
+*.crt
+*.der
+*.p12
+*.pfx
+*.p7b
+*.cer
+ssl/
+certs/
+
+# ==========================================
+# Profiling
+# ==========================================
+.prof
+*.prof
+
+# ==========================================
+# Misc
+# ==========================================
+.cache/
+.local/
+.config/
