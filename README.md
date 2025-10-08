@@ -1,90 +1,93 @@
+# 🎓 Attendance Management System
+
 <div align="center">
-  <h1>🎓 Attendance Management System</h1>
-  **An Intelligent Face Recognition-Based Attendance Tracking Solution**
-  
-  [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-  [![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green.svg)](https://opencv.org/)
-  [![Streamlit](https://img.shields.io/badge/Streamlit-Latest-red.svg)](https://streamlit.io/)
-  [![Flask](https://img.shields.io/badge/Flask-Latest-black.svg)](https://flask.palletsprojects.com/)
-  [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-  
-  <p>A comprehensive, production-ready attendance management system utilizing computer vision and machine learning for automated student attendance tracking.</p>
+
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-red.svg)
+![Flask](https://img.shields.io/badge/Flask-API-black.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B.svg)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57.svg)
+
+**An intelligent, face recognition-based attendance management system built with Python, OpenCV, and modern web technologies.**
+
+[Features](#-key-features) • [Installation](#-installation) • [Usage](#-usage) • [Architecture](#-system-architecture) • [API](#-api-documentation) • [Contributing](#-contributing)
+
 </div>
 
 ---
 
 ## 📋 Table of Contents
 
-- [Overview](#-overview)
+- [About](#-about)
 - [Key Features](#-key-features)
 - [System Architecture](#-system-architecture)
 - [Technology Stack](#-technology-stack)
-- [Project Structure](#-project-structure)
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
 - [Configuration](#-configuration)
-- [Usage Guide](#-usage-guide)
-  - [Training the Model](#1-training-the-model)
-  - [Live Attendance Recognition](#2-live-attendance-recognition)
-  - [Admin Dashboard](#3-admin-dashboard-streamlit)
+- [Usage](#-usage)
+  - [Training the Face Recognition Model](#1-training-the-face-recognition-model)
+  - [Running Attendance Recognition](#2-running-attendance-recognition)
+  - [Web Dashboard](#3-web-dashboard-streamlit)
   - [REST API](#4-rest-api-flask)
-- [Dataset Guidelines](#-dataset-guidelines)
+  - [Library Usage](#5-library-usage)
+- [Project Structure](#-project-structure)
 - [Database Schema](#-database-schema)
-- [Email Notifications](#-email-notifications)
 - [API Documentation](#-api-documentation)
+- [Workflow Details](#-workflow-details)
 - [Troubleshooting](#-troubleshooting)
+- [Testing](#-testing)
 - [Contributing](#-contributing)
-- [Roadmap](#-roadmap)
+- [Security Considerations](#-security-considerations)
 - [License](#-license)
-- [Acknowledgments](#-acknowledgments)
+- [Maintainers](#-maintainers)
+- [Acknowledgements](#-acknowledgements)
 
 ---
 
-## 🌟 Overview
+## 🌟 About
 
-The **Attendance Management System** is an intelligent, self-contained solution for automated attendance tracking using facial recognition technology. Built with OpenCV's LBPH (Local Binary Patterns Histograms) algorithm, this system provides a seamless way to manage student attendance without manual intervention.
+The **Attendance Management System** is a comprehensive, AI-powered solution for automated attendance tracking using facial recognition technology. Built with Python and leveraging OpenCV's LBPH (Local Binary Patterns Histograms) face recognition algorithm, this system provides a touchless, efficient, and accurate method for managing attendance in educational institutions, offices, or any organization requiring reliable attendance tracking.
 
-### Why This Project?
-
-Traditional attendance systems are time-consuming, prone to proxy attendance, and lack automation. This system addresses these challenges by:
-
-- **Automating attendance marking** through facial recognition
-- **Preventing proxy attendance** with biometric verification
-- **Providing real-time insights** through an intuitive admin dashboard
-- **Enabling integration** via REST API endpoints
-- **Supporting email notifications** for absent students
-
-Perfect for educational institutions, training centers, corporate environments, and any organization requiring reliable attendance tracking.
+The system combines computer vision, machine learning, and modern web technologies to deliver:
+- **Real-time face detection and recognition** using webcam/camera feeds
+- **Automated attendance marking** with duplicate prevention
+- **Web-based administrative dashboard** for attendance management
+- **RESTful API** for third-party integrations
+- **Email notifications** for absent students/employees
+- **Export capabilities** (CSV, Excel) for reporting
 
 ---
 
 ## ✨ Key Features
 
-### Core Functionality
-- 🎯 **Face Detection & Recognition** - Real-time face detection using Haar Cascades and recognition via LBPH algorithm
-- 📸 **Live Camera Integration** - Continuous attendance monitoring through webcam
-- 🗄️ **SQLite Database** - Lightweight, serverless database for attendance records
-- 🎨 **Interactive Admin Dashboard** - Modern Streamlit-based UI for attendance management
-- 🔌 **RESTful API** - Flask-based API for third-party integrations
-- 📧 **Email Notifications** - Automated absent student notifications via SMTP
-- 📊 **Export Capabilities** - Export attendance data to CSV/Excel formats
-- 🔐 **Duplicate Prevention** - Ensures one attendance entry per student per day
+### 🎯 Core Features
+- ✅ **Face Recognition-Based Attendance**: Automated attendance marking using LBPH face recognition
+- ✅ **Real-time Processing**: Live camera feed processing for instant attendance marking
+- ✅ **Idempotent Operations**: Prevents duplicate attendance entries for the same person on the same day
+- ✅ **Multi-person Recognition**: Detects and recognizes multiple faces simultaneously
+- ✅ **Confidence Scoring**: Adjustable confidence threshold for recognition accuracy
 
-### Advanced Features
-- ⚙️ **Configurable Confidence Threshold** - Adjustable face recognition accuracy
-- 📅 **Date-based Filtering** - View attendance for specific dates
-- 👥 **Student Roster Management** - CSV-based student database
-- 🔄 **Real-time Updates** - Live attendance marking and dashboard updates
-- 🎭 **Multi-face Detection** - Simultaneous recognition of multiple faces
-- 🛠️ **Diagnostic Tools** - Built-in system health checks
+### 📊 Administrative Features
+- 📈 **Interactive Dashboard**: Streamlit-based web interface for attendance management
+- 📧 **Email Notifications**: Automatic absent notifications via SMTP
+- 📁 **Data Export**: Export attendance records in CSV and Excel formats
+- 📅 **Date-based Filtering**: View and manage attendance by specific dates
+- 🔍 **Student Roster Management**: View and manage student information
+
+### 🔧 Technical Features
+- 🗄️ **SQLite Database**: Lightweight, serverless database for attendance records
+- 🌐 **RESTful API**: Flask-based API for programmatic access
+- 🎨 **Modern UI**: Clean, responsive web interface
+- 🔐 **Secure Configuration**: Environment-based configuration management
+- 📝 **Comprehensive Logging**: Detailed logs for debugging and monitoring
 
 ---
 
 ## 🏗️ System Architecture
 
-### Architecture Diagram
-
-The following Mermaid diagram illustrates the complete system architecture, showing all components and their interactions:
+The system follows a modular, layered architecture designed for extensibility and maintainability:
 
 ```mermaid
 flowchart TB
@@ -132,369 +135,206 @@ flowchart TB
     LABELS -->|Name Lookup| RECOG
     RECOG -->|Mark Attendance| DB
 
-    %% Data Management
-    CSV -->|Student Info| UI
-    CSV -->|Student Info| API
-    DB -->|Read/Write| UI
-    DB -->|Read/Write| API
-    SMTP -->|Email Config| UI
+    %% Management Flow
+    CSV -->|Student Data| UTIL
+    UTIL -->|CRUD Operations| DB
+    DB -->|Query Results| UI
+    DB -->|Query Results| API
+    SMTP -->|Email Config| UTIL
+    UTIL -->|Send Emails| UI
 
-    %% Utility Layer
-    UTIL -->|DB Operations| DB
-    UTIL -->|CSV Parsing| CSV
-    UTIL -->|Email Service| SMTP
-    UTIL -->|Support Functions| UI
-    UTIL -->|Support Functions| API
-    UTIL -->|Support Functions| RECOG
+    %% Interactions
+    UI -.->|Uses| UTIL
+    API -.->|Uses| UTIL
+    RECOG -.->|Uses| UTIL
 
-    %% User Interactions
-    USER(["👤 Administrator"]) -.->|Access| UI
-    USER -.->|API Requests| API
-    ADMIN(["👤 End User"]) -.->|Face Input| CAM
-
-    style Input fill:#e1f5ff,stroke:#01579b,stroke-width:2px
-    style Processing fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style Model fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style Data fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    style Interface fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    style Utils fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    style Input fill:#e3f2fd
+    style Processing fill:#fff3e0
+    style Model fill:#f3e5f5
+    style Data fill:#e8f5e9
+    style Interface fill:#fce4ec
+    style Utils fill:#f1f8e9
 ```
 
-> **📊 Can't see the diagram?**
->
-> - **Option 1**: View on GitHub (Mermaid is natively supported)
-> - **Option 2**: Copy the diagram code and paste into [Mermaid Live Editor](https://mermaid.live/)
-> - **Option 3**: Use the text-based diagram below as an alternative
+### 📐 Architecture Layers
 
-### Alternative: Text-Based Architecture View
+1. **Input Layer** 📹
+   - Webcam/camera feeds for live recognition
+   - Dataset directory with training images
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    ATTENDANCE MANAGEMENT SYSTEM                      │
-└─────────────────────────────────────────────────────────────────────┘
+2. **Processing Layer** ⚙️
+   - Haar Cascade for face detection
+   - LBPH training algorithm
+   - Face recognition engine
 
-📹 INPUT LAYER
-├── Webcam/Camera Feed ──────────┐
-└── Dataset Images (dataset/)────┤
-                                 │
-                                 ↓
-⚙️ PROCESSING LAYER              │
-├── Haar Cascade Detector ←──────┘
-├── LBPH Trainer (train.py)
-└── LBPH Recognizer (attendance_runner.py)
-        │                    │
-        ↓                    ↓
-🤖 MODEL LAYER          🎯 RECOGNITION
-├── trainer.yml              │
-└── labels.pickle            │
-        │                    │
-        └────────┬───────────┘
-                 ↓
-💾 DATA LAYER
-├── attendance.db (SQLite) ←─────┐
-├── students.csv                 │
-└── smtp_config.json             │
-        │                        │
-        ↓                        │
-🖥️ INTERFACE LAYER              │
-├── Streamlit Dashboard ─────────┤
-└── Flask REST API ──────────────┘
-        │
-        ↓
-🔧 UTILITY LAYER
-└── utils.py (Helper Functions)
+3. **Model Layer** 🤖
+   - Trained LBPH model (trainer.yml)
+   - ID-to-name mappings (labels.pickle)
 
-FLOW:
-1. Training: Dataset → Detector → Trainer → Model Files
-2. Recognition: Camera → Detector → Recognizer → Database
-3. Management: Database ← → UI/API ← → Administrator
-```
+4. **Data Layer** 💾
+   - SQLite database for attendance records
+   - CSV file for student roster
+   - SMTP configuration for emails
 
-### Data Flow Explanation
+5. **Interface Layer** 🖥️
+   - Streamlit web dashboard
+   - Flask REST API
 
-1. **Training Phase** (One-time setup)
-   - Images from `dataset/` folder are processed by Haar Cascade detector
-   - Detected faces are used to train the LBPH recognizer
-   - Trained model (`trainer.yml`) and label mappings (`labels.pickle`) are generated
+6. **Utility Layer** 🔧
+   - Shared helper functions
+   - Database operations
+   - Email services
 
-2. **Recognition Phase** (Real-time)
-   - Live camera feed captures frames
-   - Haar Cascade detects faces in each frame
-   - LBPH recognizer matches detected faces against trained model
-   - Successful matches trigger attendance marking in the database
-
-3. **Management Phase** (Admin operations)
-   - Streamlit UI and Flask API provide interfaces for data access
-   - Attendance records are retrieved from SQLite database
-   - Student roster is loaded from CSV file
-   - Email notifications are sent for absent students
-
-### Component Interaction
-
-| Component | Purpose | Dependencies |
-|-----------|---------|--------------|
-| **train.py** | Model training | OpenCV, NumPy, Dataset images |
-| **attendance_runner.py** | Live recognition | Trained model, Camera, SQLite |
-| **streamlit_app.py** | Admin dashboard | Database, Student CSV, SMTP config |
-| **app.py** | REST API server | Database, Student CSV, Flask |
-| **utils.py** | Utility functions | All components use this |
+> 📖 For detailed architecture documentation, see [ARCHITECTURE.md](ARCHITECTURE.md)
 
 ---
 
 ## 🛠️ Technology Stack
 
 ### Core Technologies
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Python** | 3.8+ | Primary programming language |
+| **OpenCV (opencv-contrib-python)** | 4.8.0+ | Computer vision and face recognition |
+| **NumPy** | Latest | Numerical computing |
+| **SQLite** | Built-in | Database management |
 
-| Category | Technology | Version | Purpose |
-|----------|-----------|---------|---------|
-| **Language** | Python | 3.10+ | Primary programming language |
-| **Computer Vision** | OpenCV (contrib) | 4.8.0+ | Face detection & recognition |
-| **Web Framework** | Streamlit | Latest | Admin dashboard UI |
-| **API Framework** | Flask | Latest | REST API endpoints |
-| **Database** | SQLite | 3.x | Attendance storage |
-| **Data Processing** | Pandas | Latest | Data manipulation |
-| **Numerical Computing** | NumPy | Latest | Array operations |
+### Web Frameworks
+| Framework | Purpose |
+|-----------|---------|
+| **Flask** | REST API server |
+| **Flask-CORS** | Cross-origin resource sharing |
+| **Streamlit** | Interactive web dashboard |
 
-### Key Python Libraries
+### Data Processing
+| Library | Purpose |
+|---------|---------|
+| **Pandas** | Data manipulation and analysis |
+| **OpenPyXL** | Excel file operations |
 
-```plaintext
-opencv-contrib-python >= 4.8.0  # Face recognition module
-numpy                            # Numerical operations
-pandas                           # Data manipulation
-Pillow                          # Image processing
-Flask                           # REST API framework
-flask-cors                      # CORS support
-APScheduler                     # Task scheduling
-python-dotenv                   # Environment variables
-streamlit                       # Web UI framework
-streamlit-aggrid                # Enhanced data grids
-requests                        # HTTP requests
-openpyxl                        # Excel file support
-```
-
-### Algorithms & Models
-
-- **Face Detection**: Haar Cascade Classifier (frontal face)
-- **Face Recognition**: LBPH (Local Binary Patterns Histograms)
-- **Confidence Metric**: Distance-based matching (lower = better)
-
----
-
-## 📁 Project Structure
-
-```plaintext
-attendance-management-system/
-│
-├── 📄 Core Application Files
-│   ├── app.py                    # Flask REST API server
-│   ├── streamlit_app.py          # Streamlit admin dashboard
-│   ├── attendance_runner.py      # Live recognition engine
-│   ├── train.py                  # Model training script
-│   ├── utils.py                  # Utility functions & helpers
-│   └── streamlit_utils.py        # Streamlit-specific utilities
-│
-├── 📊 Data Files
-│   ├── attendance.db             # SQLite attendance database
-│   ├── students.csv              # Student roster (id, name, email)
-│   ├── smtp_config.json          # SMTP configuration (git-ignored)
-│   └── .env                      # Environment variables (optional)
-│
-├── 🤖 Model Files
-│   └── model/
-│       ├── trainer.yml           # Trained LBPH model
-│       └── labels.pickle         # ID-to-name mappings
-│
-├── 📸 Dataset
-│   └── dataset/
-│       ├── student1/             # Folder per student
-│       │   ├── image1.jpg
-│       │   ├── image2.jpg
-│       │   └── ...
-│       ├── student2/
-│       └── ...
-│
-├── 🧪 Testing
-│   ├── tests/
-│   │   └── test_utils.py
-│   ├── test_detect_params.py
-│   ├── test_imports.py
-│   ├── test_predict.py
-│   ├── test_recognize.py
-│   └── test_recognize_known.py
-│
-├── 📚 Documentation
-│   ├── README.md                 # This file
-│   ├── CONTRIBUTING.md           # Contribution guidelines
-│   └── LICENSE                   # MIT License
-│
-├── ⚙️ Configuration
-│   ├── requirements.txt          # Python dependencies
-│   ├── run_streamlit.bat         # Windows batch script
-│   └── .gitignore               # Git ignore rules
-│
-└── 🗑️ Cache & Backups
-    ├── __pycache__/
-    ├── attendance.db.bak
-    └── students.csv.bak
-```
-
-### File Descriptions
-
-**Core Scripts:**
-- `app.py` - Flask API exposing endpoints for attendance, students, and export
-- `streamlit_app.py` - Web-based admin interface with dashboard, reports, and settings
-- `attendance_runner.py` - Real-time face recognition and attendance marking
-- `train.py` - Trains LBPH model from dataset images
-- `utils.py` - Database operations, CSV handling, email sending, label management
-
-**Data Files:**
-- `attendance.db` - SQLite database storing attendance records
-- `students.csv` - CSV file with student details (id, name, email)
-- `smtp_config.json` - SMTP server configuration for email notifications
-
-**Model Files:**
-- `trainer.yml` - Binary file containing trained LBPH face recognizer model
-- `labels.pickle` - Pickle file mapping numeric IDs to student names
+### Additional Libraries
+- **Pillow**: Image processing
+- **APScheduler**: Job scheduling
+- **python-dotenv**: Environment configuration
+- **smtplib**: Email notifications
 
 ---
 
 ## 📋 Prerequisites
 
+Before installing the system, ensure you have:
+
+- **Python 3.8 or higher** installed
+- **pip** package manager
+- **Webcam/Camera** for live attendance (optional for API usage)
+- **Git** for cloning the repository
+- **Virtual environment** tool (recommended)
+
 ### System Requirements
-
-- **Operating System**: Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
-- **Python**: Version 3.10 or higher
-- **Webcam**: Built-in or external USB camera
+- **OS**: Windows 10/11, Linux (Ubuntu 18.04+), macOS (10.14+)
 - **RAM**: Minimum 4GB (8GB recommended)
-- **Storage**: At least 500MB free space
-
-### Software Dependencies
-
-- Python 3.10+ with pip
-- Virtual environment support (venv)
-- Git (for cloning repository)
-- Text editor or IDE (VS Code recommended)
-
-### Hardware Requirements
-
-- Camera with minimum 720p resolution
-- Adequate lighting for face detection
-- Processor: Intel i3 or equivalent (i5+ recommended)
+- **Storage**: 500MB free space
+- **Camera**: USB webcam or built-in camera (640x480 or higher)
 
 ---
 
-## 🚀 Installation
+## 📥 Installation
 
 ### Step 1: Clone the Repository
 
 ```bash
-# Using HTTPS
 git clone https://github.com/KunjShah95/attendance-management-system.git
-
-# Or using SSH
-git clone git@github.com:KunjShah95/attendance-management-system.git
-
-# Navigate to project directory
 cd attendance-management-system
 ```
 
-### Step 2: Create Virtual Environment
+### Step 2: Create Virtual Environment (Recommended)
 
-**Windows (cmd.exe):**
-```cmd
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-**Windows (PowerShell):**
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-
-**macOS/Linux:**
+**Linux/macOS:**
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
+**Windows (PowerShell):**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+**Windows (Command Prompt):**
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+```
+
 ### Step 3: Install Dependencies
 
-```cmd
-# Upgrade pip
-python -m pip install --upgrade pip
-
-# Install required packages
+```bash
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Step 4: Verify OpenCV Installation
+### Step 4: Verify Installation
 
-```cmd
-python -c "import cv2; print('OpenCV version:', cv2.__version__); print('Face module available:', hasattr(cv2, 'face'))"
+```bash
+python -c "import cv2; print(f'OpenCV Version: {cv2.__version__}')"
+python -c "import cv2; print(f'Face module available: {hasattr(cv2, \"face\")}')"
 ```
 
-**Expected Output:**
+You should see:
 ```
-OpenCV version: 4.8.x.xx
+OpenCV Version: 4.8.x.xx
 Face module available: True
-```
-
-⚠️ **If `Face module available: False`**, reinstall OpenCV:
-```cmd
-pip uninstall opencv-python opencv-contrib-python
-pip install opencv-contrib-python
-```
-
-### Step 5: Initialize Database
-
-The database will be created automatically on first run, but you can initialize it manually:
-
-```cmd
-python -c "from utils import ensure_db; ensure_db()"
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-### 1. Student Roster Setup
+### 1. Database Configuration
+
+The system uses SQLite by default. The database file (`attendance.db`) is created automatically.
+
+```python
+# Default database path
+DB_PATH = "attendance.db"
+
+# Custom database path
+DB_PATH = "/path/to/custom/attendance.db"
+```
+
+### 2. Student Roster Configuration
 
 Create or edit `students.csv` with the following format:
 
 ```csv
 id,name,email
-1,John Doe,john.doe@university.edu
-2,Jane Smith,jane.smith@university.edu
-3,Alice Johnson,alice.johnson@university.edu
+1,John Doe,john.doe@example.com
+2,Jane Smith,jane.smith@example.com
+3,Alice Johnson,alice.j@example.com
 ```
 
-**Column Requirements:**
-- `id` - Unique integer identifier (matches dataset folder order)
-- `name` - Student full name (matches dataset folder name)
-- `email` - Valid email address for notifications
+**CSV Format Requirements:**
+- **Header row required**: `id,name,email`
+- **id**: Unique integer identifier
+- **name**: Student/employee full name
+- **email**: Valid email address for notifications
 
-### 2. SMTP Configuration (Email Notifications)
+### 3. SMTP Configuration (Optional)
 
-**Option A: Using Streamlit UI** (Recommended)
-1. Run Streamlit app: `streamlit run streamlit_app.py`
-2. Navigate to **Settings** page
-3. Enter SMTP details and click **Save Configuration**
+For email notifications, create `smtp_config.json`:
 
-**Option B: Manual Configuration**
-
-Create `smtp_config.json`:
 ```json
 {
   "host": "smtp.gmail.com",
-  "port": 587,
+  "port": "587",
   "user": "your-email@gmail.com",
   "pass": "your-app-password",
   "use_tls": true
 }
 ```
 
-**Option C: Environment Variables**
+**Alternatively**, use environment variables:
 
 Create `.env` file:
 ```env
@@ -505,450 +345,268 @@ SMTP_PASS=your-app-password
 SMTP_USE_TLS=True
 ```
 
-**Gmail Setup:**
-1. Enable 2-factor authentication
-2. Generate app-specific password: [Google Account > Security > App passwords](https://myaccount.google.com/apppasswords)
-3. Use generated password in configuration
+> ⚠️ **Security Note**: Never commit `smtp_config.json` or `.env` files with real credentials to version control!
 
-⚠️ **Security Warning**: Never commit `smtp_config.json` or `.env` with real credentials to version control!
+### 4. Environment Variables
 
-### 3. Environment Variables (Optional)
+Create a `.env` file for configuration:
 
 ```env
+# Database
 DB_PATH=attendance.db
+
+# Students CSV
 STUDENTS_CSV=students.csv
+
+# SMTP Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+SMTP_USE_TLS=True
+
+# Application Settings
 VITE_APP_TITLE=Attendance Management System
 ```
 
 ---
 
-## 📖 Usage Guide
+## 🚀 Usage
 
-### Quick Start (Windows, cmd.exe)
+### 1. Training the Face Recognition Model
 
-1. **Activate virtual environment**
-2. **Prepare dataset** (add student images to `dataset/` folder)
-3. **Train model**: `python train.py`
-4. **Run live recognition**: `python attendance_runner.py`
-5. **Access admin dashboard**: `streamlit run streamlit_app.py`
-
----
-
-### 1. Training the Model
-
-Before using the attendance system, you must train the face recognition model with student images.
+Before recognizing faces, you must train the model with sample images.
 
 #### Prepare Dataset
 
-Create a folder structure where each student has their own subdirectory:
+Create a directory structure:
 
-```plaintext
+```
 dataset/
-├── john_doe/
-│   ├── john1.jpg
-│   ├── john2.jpg
-│   ├── john3.jpg
-│   └── ...
-├── jane_smith/
-│   ├── jane1.jpg
-│   ├── jane2.jpg
-│   └── ...
-└── alice_johnson/
-    ├── alice1.jpg
-    └── ...
+├── student_name_1/
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   └── image3.jpg
+├── student_name_2/
+│   ├── image1.jpg
+│   └── image2.jpg
+└── student_name_3/
+    ├── image1.jpg
+    ├── image2.jpg
+    └── image3.jpg
 ```
 
-**Important:** The folder name must match the student name in `students.csv`.
+**Guidelines:**
+- Each subdirectory name should match the student name
+- Use at least **10-15 images per person** for better accuracy
+- Images should have clear, front-facing faces
+- Vary lighting conditions and expressions
+- Supported formats: JPG, JPEG, PNG
 
-#### Run Training Script
+#### Train the Model
 
-```cmd
-python train.py --dataset dataset --model-dir model
+```bash
+python train.py
 ```
 
-**Command-line Arguments:**
-- `--dataset` - Path to dataset directory (default: `dataset`)
-- `--model-dir` - Output directory for model files (default: `model`)
+**With custom paths:**
+```bash
+python train.py --dataset /path/to/dataset --model-dir /path/to/model
+```
 
 **Expected Output:**
 ```
-[*] Found 3 persons in dataset
-[*] Training on 45 face samples...
-[*] Training complete!
-[*] Saved model to model/trainer.yml
-[*] Label mapping: {1: 'john_doe', 2: 'jane_smith', 3: 'alice_johnson'}
+[*] Gathering images...
+[*] Training on 150 face samples from 10 people...
+[+] Training complete. Model saved to: model/trainer.yml
+[+] Labels saved to: model/labels.pickle
+[*] Labels mapping (id -> name):
+  1: john_doe
+  2: jane_smith
+  ...
 ```
 
-**Generated Files:**
-- `model/trainer.yml` - Trained LBPH face recognizer model
-- `model/labels.pickle` - ID-to-name mapping dictionary
+### 2. Running Attendance Recognition
 
-#### Training Tips
+#### Using attendance_runner.py (Recommended)
 
-✅ **Best Practices:**
-- Use 10-20 images per student for better accuracy
-- Include various angles (front, slight left/right)
-- Capture different lighting conditions
-- Include different expressions (neutral, smiling)
-- Ensure faces are clearly visible and unobstructed
-- Use consistent image quality (avoid very low resolution)
-
-❌ **Avoid:**
-- Multiple people in one image
-- Heavily blurred or dark images
-- Faces with sunglasses or face masks
-- Images with extreme angles or lighting
-
----
-
-### 2. Live Attendance Recognition
-
-Start the real-time face recognition system to mark attendance automatically.
-
-#### Basic Usage
-
-```cmd
+```bash
 python attendance_runner.py
 ```
 
-#### Advanced Usage with Options
-
-```cmd
-python attendance_runner.py --model-dir model --db attendance.db --cam 0 --threshold 70
+**With options:**
+```bash
+python attendance_runner.py --cam 0 --threshold 70
 ```
 
-**Command-line Arguments:**
+**Parameters:**
+- `--cam`: Camera index (default: 0)
+- `--threshold`: Confidence threshold, lower = stricter (default: 70)
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `--model-dir` | `model` | Directory containing trained model files |
-| `--db` | `attendance.db` | SQLite database file path |
-| `--cam` | `0` | Camera index (0 for default webcam) |
-| `--threshold` | `70` | Recognition confidence threshold (lower = stricter) |
+**Controls:**
+- Press **'q'** to quit the camera feed
 
-#### Understanding Confidence Threshold
+#### Using attendance.py (Alternative)
 
-The LBPH algorithm returns a **distance-based confidence score** where:
-- **Lower values** = Better match (more confident)
-- **Higher values** = Worse match (less confident)
+```bash
+python attendance.py --model-dir model --db attendance.db --cam 0 --threshold 70
+```
 
-**Recommended Values:**
-- `50-60` - Very strict (may miss some faces)
-- `70-80` - Balanced (recommended for most cases)
-- `90-100` - Lenient (may have false positives)
+### 3. Web Dashboard (Streamlit)
 
-#### Controls
+Launch the interactive web dashboard:
 
-- **Press 'q'** - Quit the application
-- Green rectangle - Face recognized (attendance marked)
-- Display shows name and confidence score
-
-#### How It Works
-
-1. Camera captures live video frames
-2. Haar Cascade detects faces in each frame
-3. LBPH recognizer matches detected faces against trained model
-4. If confidence is below threshold, attendance is marked
-5. **Duplicate Prevention**: Only one attendance entry per student per day
-
----
-
-### 3. Admin Dashboard (Streamlit)
-
-The Streamlit dashboard provides a web-based interface for managing attendance data.
-
-#### Launch Dashboard
-
-```cmd
+```bash
 streamlit run streamlit_app.py
 ```
 
-The dashboard will open automatically in your default browser at `http://localhost:8501`.
+Or on Windows:
+```cmd
+run_streamlit.bat
+```
 
-#### Dashboard Features
+**Access the dashboard at**: `http://localhost:8501`
 
-##### 📊 **Dashboard Page**
-- View attendance for specific dates
-- See total present/absent counts
-- Real-time attendance statistics
-- Quick date picker navigation
-- Display database file path
-
-##### 👥 **Students Page**
-- View complete student roster
-- Display student IDs, names, and emails
-- Searchable and filterable table
-- Quick student lookup
-
-##### ✅ **Attendance Page**
-- View present students for selected date
-- View absent students
-- Mark manual attendance (if needed)
-- Send email notifications to absent students
-- Bulk email operations
-
-##### 📈 **Reports Page**
-- Generate attendance reports
-- Export to CSV format
-- Export to Excel (XLSX) format
-- Date range filtering
-- Download reports locally
-
-##### ⚙️ **Settings Page**
-- Configure SMTP email settings
-- Save email credentials securely
-- Test email configuration
-- Update system preferences
-
-##### 🔍 **Diagnostics Page**
-- Check OpenCV installation
-- Verify face module availability
-- Test camera access
-- Validate model files
-- Database health check
-- System information display
-
-#### Using the Camera Widget
-
-The Streamlit app includes a camera input widget for testing recognition:
-
-1. Navigate to the **Dashboard** page
-2. Click on the camera icon to enable webcam
-3. Take a photo when ready
-4. System will attempt to recognize the face
-5. If recognized, attendance is marked automatically
-
----
+**Dashboard Features:**
+- 📊 **Dashboard**: View today's attendance
+- 👥 **Students**: Manage student roster
+- 📋 **Attendance**: View/export attendance records
+- 📝 **Reports**: Generate attendance reports
+- ⚙️ **Settings**: Configure SMTP and system settings
+- 📹 **Live Recognition**: Real-time face recognition with camera
 
 ### 4. REST API (Flask)
 
-The Flask API provides programmatic access to attendance data for integrations.
+Start the Flask API server:
 
-#### Start API Server
-
-```cmd
+```bash
 python app.py
 ```
 
-**Default URL:** `http://localhost:5000`
+**API runs at**: `http://localhost:5000`
 
-#### Running in Production
+**Available Endpoints:**
+- `GET /api/attendance`: Retrieve attendance records
+- `GET /api/students`: Get student roster
+- `POST /api/send_absent_emails`: Send absence notifications
+- `GET /api/export_csv`: Export attendance data
 
-```cmd
-# Development mode
-flask run
+### 5. Library Usage
 
-# Production mode (with Gunicorn)
-pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
-```
+Use the system as a Python library in your scripts:
 
-#### API Health Check
+```python
+from utils import ensure_db, load_students, mark_attendance_db, get_attendance
 
-```cmd
-curl http://localhost:5000/
+# Initialize database
+ensure_db('attendance.db')
+
+# Load students from CSV
+students = load_students('students.csv')
+print(f"Loaded {len(students)} students")
+
+# Mark attendance manually
+marked = mark_attendance_db(1, 'John Doe', db_path='attendance.db')
+if marked:
+    print("Attendance marked successfully")
+else:
+    print("Already marked or error occurred")
+
+# Retrieve attendance for today
+from datetime import date
+attendance = get_attendance(db_path='attendance.db', date_str=date.today().isoformat())
+for record in attendance:
+    print(f"ID: {record[0]}, Name: {record[1]}, Date: {record[2]}, Time: {record[3]}")
 ```
 
 ---
 
-## 📸 Dataset Guidelines
+## 📁 Project Structure
 
-### Image Requirements
-
-| Aspect | Requirement | Recommendation |
-|--------|-------------|----------------|
-| **Resolution** | Minimum 640x480 | 1280x720 or higher |
-| **Format** | JPG, JPEG, PNG | JPG for smaller file size |
-| **File Size** | No strict limit | Keep under 5MB per image |
-| **Face Size** | At least 100x100 pixels | Larger faces = better accuracy |
-| **Lighting** | Sufficient to see face clearly | Natural or bright artificial light |
-| **Background** | Any | Plain backgrounds work best |
-
-### Optimal Dataset Structure
-
-```plaintext
-dataset/
-├── student_name_1/          # Folder name = student name
-│   ├── front_1.jpg          # Front-facing photo
-│   ├── front_2.jpg          # Another front-facing
-│   ├── slight_left.jpg      # Slight left turn
-│   ├── slight_right.jpg     # Slight right turn
-│   ├── smiling.jpg          # Different expression
-│   ├── neutral.jpg          # Neutral expression
-│   ├── bright_light.jpg     # Well-lit condition
-│   ├── dim_light.jpg        # Lower light condition
-│   └── ...                  # 10-20 images total
-└── student_name_2/
-    └── ...
 ```
-
-### Data Collection Tips
-
-1. **Capture Multiple Sessions**: Take photos on different days
-2. **Vary Conditions**: Different times of day, lighting, clothing
-3. **Consistent Camera**: Use the same camera for training and recognition when possible
-4. **Natural Poses**: Ask students to look naturally at camera
-5. **Quality Over Quantity**: 10 good images > 50 poor images
-
-### Privacy & Ethics
-
-⚠️ **Important Considerations:**
-- Obtain **explicit consent** from all individuals before collecting facial data
-- Clearly communicate how the data will be used and stored
-- Implement data retention policies
-- Comply with local privacy laws (GDPR, CCPA, etc.)
-- Provide opt-out mechanisms
-- Secure storage of biometric data
-- Regular audits of data usage
+attendance-management-system/
+│
+├── 📄 README.md                 # This file
+├── 📄 ARCHITECTURE.md           # Detailed architecture documentation
+├── 📄 CONTRIBUTING.md           # Contribution guidelines
+├── 📄 LICENSE                   # MIT License
+├── 📄 requirements.txt          # Python dependencies
+├── 📄 .env.example              # Environment variables template
+├── 📄 .gitignore                # Git ignore rules
+│
+├── 🗂️ dataset/                  # Training images (one folder per person)
+│   ├── john_doe/
+│   ├── jane_smith/
+│   └── ...
+│
+├── 🗂️ model/                    # Trained models (generated)
+│   ├── trainer.yml             # LBPH trained model
+│   └── labels.pickle           # ID to name mapping
+│
+├── 🗂️ docs/                     # Documentation
+│   └── ARCHITECTURE.md
+│
+├── 🗂️ tests/                    # Unit tests
+│   └── test_utils.py
+│
+├── 📊 attendance.db             # SQLite database (generated)
+├── 📄 students.csv              # Student roster
+├── 📄 smtp_config.json          # SMTP configuration (git-ignored)
+│
+├── 🐍 train.py                  # Model training script
+├── 🐍 attendance.py             # Attendance recognition (alternative)
+├── 🐍 attendance_runner.py     # Attendance recognition (main)
+├── 🐍 utils.py                  # Utility functions
+├── 🐍 streamlit_app.py          # Streamlit dashboard
+├── 🐍 streamlit_utils.py        # Streamlit helper functions
+├── 🐍 app.py                    # Flask REST API
+│
+├── 🌐 architecture.html         # Interactive architecture diagram
+└── 🦇 run_streamlit.bat         # Windows batch script
+```
 
 ---
 
-## 💾 Database Schema
+## 🗄️ Database Schema
 
 ### Attendance Table
 
 ```sql
 CREATE TABLE IF NOT EXISTS attendance (
-    id INTEGER,
-    name TEXT,
-    date TEXT,
-    time TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    date DATE NOT NULL,
+    time TEXT NOT NULL,
+    UNIQUE(student_id, date)
 );
 ```
 
-**Column Descriptions:**
+**Columns:**
+- **id**: Auto-incrementing primary key
+- **student_id**: Student identifier (references students CSV)
+- **name**: Student name
+- **date**: Attendance date (YYYY-MM-DD format)
+- **time**: Attendance time (HH:MM:SS format)
 
-| Column | Type | Description | Example |
-|--------|------|-------------|---------|
-| `id` | INTEGER | Student ID (matches students.csv) | `1` |
-| `name` | TEXT | Student name | `John Doe` |
-| `date` | TEXT | Attendance date (ISO format) | `2025-10-06` |
-| `time` | TEXT | Attendance time (HH:MM:SS) | `09:15:30` |
+**Constraints:**
+- Unique constraint on `(student_id, date)` prevents duplicate entries
 
-### Database Operations
+### Data Model
 
-The system prevents duplicate attendance entries using this logic:
-
-```python
-# Check if attendance already exists for today
-existing = cursor.execute(
-    "SELECT * FROM attendance WHERE id=? AND date=?",
-    (student_id, today_date)
-).fetchone()
-
-if existing is None:
-    # Mark new attendance
-    cursor.execute(
-        "INSERT INTO attendance VALUES (?, ?, ?, ?)",
-        (student_id, name, date, time)
-    )
 ```
+students.csv (External)
+├─ id (INTEGER)
+├─ name (TEXT)
+└─ email (TEXT)
 
-### Backup & Restore
-
-**Create Backup:**
-```cmd
-copy attendance.db attendance_backup_2025-10-06.db
-```
-
-**Restore from Backup:**
-```cmd
-copy attendance_backup_2025-10-06.db attendance.db
-```
-
-**Export to CSV (via Streamlit or API):**
-- Use the Reports page in Streamlit dashboard
-- Or call the `/api/export_csv` endpoint
-
----
-
-## 📧 Email Notifications
-
-### SMTP Configuration
-
-The system supports multiple SMTP providers. Here are common configurations:
-
-#### Gmail
-
-```json
-{
-  "host": "smtp.gmail.com",
-  "port": 587,
-  "user": "your-email@gmail.com",
-  "pass": "your-16-char-app-password",
-  "use_tls": true
-}
-```
-
-**Gmail Setup Steps:**
-1. Enable 2-Factor Authentication
-2. Go to [App Passwords](https://myaccount.google.com/apppasswords)
-3. Generate new app password
-4. Use generated password in configuration
-
-#### Outlook/Office 365
-
-```json
-{
-  "host": "smtp.office365.com",
-  "port": 587,
-  "user": "your-email@outlook.com",
-  "pass": "your-password",
-  "use_tls": true
-}
-```
-
-#### Custom SMTP Server
-
-```json
-{
-  "host": "mail.yourdomain.com",
-  "port": 587,
-  "user": "notifications@yourdomain.com",
-  "pass": "your-password",
-  "use_tls": true
-}
-```
-
-### Email Templates
-
-The system sends email notifications to absent students. Default template:
-
-```plaintext
-Subject: Attendance Notification - [Date]
-
-Dear [Student Name],
-
-This is a notification that you were marked absent on [Date].
-
-If you believe this is an error, please contact your administrator.
-
-Best regards,
-Attendance Management System
-```
-
-### Sending Absent Emails
-
-**Via Streamlit UI:**
-1. Go to **Attendance** page
-2. Select date
-3. Click **Send Absent Emails**
-4. Confirm action
-
-**Via API:**
-```bash
-curl -X POST http://localhost:5000/api/send_absent_emails \
-  -H "Content-Type: application/json" \
-  -d '{
-    "date": "2025-10-06",
-    "smtp": {
-      "host": "smtp.gmail.com",
-      "port": 587,
-      "user": "your-email@gmail.com",
-      "pass": "your-app-password",
-      "use_tls": true
-    }
-  }'
+attendance.db
+└─ attendance table
+   ├─ id (INTEGER PRIMARY KEY)
+   ├─ student_id (INTEGER) -> references students.csv:id
+   ├─ name (TEXT)
+   ├─ date (DATE)
+   └─ time (TEXT)
 ```
 
 ---
@@ -957,142 +615,172 @@ curl -X POST http://localhost:5000/api/send_absent_emails \
 
 ### Base URL
 ```
-http://localhost:5000/api
+http://localhost:5000
 ```
 
 ### Endpoints
 
 #### 1. Get Attendance Records
 
-**Endpoint:** `GET /api/attendance`
+```http
+GET /api/attendance?date=YYYY-MM-DD
+```
 
 **Query Parameters:**
-- `date` (optional) - Filter by date (YYYY-MM-DD format)
+- `date` (optional): Filter by specific date (format: YYYY-MM-DD)
 
-**Example Request:**
-```bash
-curl "http://localhost:5000/api/attendance?date=2025-10-06"
-```
-
-**Example Response:**
+**Response:**
 ```json
-{
-  "success": true,
-  "count": 5,
-  "data": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "date": "2025-10-06",
-      "time": "09:15:30"
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "date": "2025-10-06",
-      "time": "09:18:45"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "date": "2024-01-15",
+    "time": "09:30:45"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "date": "2024-01-15",
+    "time": "09:31:22"
+  }
+]
 ```
 
-#### 2. Get Student Roster
+#### 2. Get Students
 
-**Endpoint:** `GET /api/students`
-
-**Example Request:**
-```bash
-curl "http://localhost:5000/api/students"
+```http
+GET /api/students
 ```
 
-**Example Response:**
+**Response:**
 ```json
-{
-  "success": true,
-  "count": 10,
-  "students": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@university.edu"
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@university.edu"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com"
+  }
+]
 ```
 
 #### 3. Send Absent Emails
 
-**Endpoint:** `POST /api/send_absent_emails`
+```http
+POST /api/send_absent_emails
+Content-Type: application/json
+```
 
 **Request Body:**
 ```json
 {
-  "date": "2025-10-06",
+  "date": "2024-01-15",
   "smtp": {
     "host": "smtp.gmail.com",
-    "port": 587,
-    "user": "notifications@example.com",
-    "pass": "app-password",
+    "port": "587",
+    "user": "your-email@gmail.com",
+    "pass": "your-password",
     "use_tls": true
   }
 }
 ```
 
-**Example Response:**
+**Response:**
 ```json
 {
-  "success": true,
-  "message": "Sent 3 absent emails",
-  "recipients": [
-    "alice.johnson@university.edu",
-    "bob.wilson@university.edu",
-    "charlie.brown@university.edu"
-  ]
+  "sent": 5
 }
 ```
 
 #### 4. Export Attendance
 
-**Endpoint:** `GET /api/export_csv`
+```http
+GET /api/export_csv?date=YYYY-MM-DD&format=csv
+```
 
 **Query Parameters:**
-- `date` (optional) - Filter by date
-- `format` (optional) - Export format: `csv` or `xlsx` (default: `csv`)
+- `date` (optional): Filter by date
+- `format`: `csv` or `xlsx` (default: csv)
 
-**Example Request:**
-```bash
-curl "http://localhost:5000/api/export_csv?date=2025-10-06&format=xlsx" --output attendance.xlsx
-```
-
-### Error Responses
-
-All endpoints return error responses in this format:
-
-```json
-{
-  "success": false,
-  "error": "Error message description"
-}
-```
-
-**Common HTTP Status Codes:**
-- `200` - Success
-- `400` - Bad Request (invalid parameters)
-- `404` - Not Found
-- `500` - Internal Server Error
+**Response:** File download
 
 ---
 
-## 🔧 Troubleshooting
+## 🔄 Workflow Details
 
-### Common Issues and Solutions
+### Training Workflow
 
-#### 1. OpenCV Face Module Not Available
+```
+1. Prepare Dataset
+   ↓
+2. Organize images in dataset/ directory
+   ├─ One folder per person
+   └─ Multiple images per folder
+   ↓
+3. Run train.py
+   ↓
+4. Haar Cascade detects faces
+   ↓
+5. LBPH algorithm trains on face samples
+   ↓
+6. Generate model files
+   ├─ trainer.yml (model data)
+   └─ labels.pickle (ID mappings)
+```
+
+### Recognition Workflow
+
+```
+1. Start camera feed
+   ↓
+2. Capture frame
+   ↓
+3. Convert to grayscale
+   ↓
+4. Haar Cascade detects faces
+   ↓
+5. Extract face ROI
+   ↓
+6. LBPH recognizer predicts identity
+   ↓
+7. Calculate confidence score
+   ↓
+8. Check against threshold
+   ↓
+9. If match found:
+   ├─ Lookup name from labels
+   ├─ Mark attendance in database
+   └─ Display on screen
+```
+
+### Management Workflow
+
+```
+1. User accesses UI or API
+   ↓
+2. Request processed
+   ↓
+3. Database queried
+   ↓
+4. Data formatted
+   ↓
+5. Response returned
+   ├─ JSON (API)
+   └─ HTML (Dashboard)
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### 1. OpenCV Face Module Not Found
 
 **Error:**
 ```
@@ -1100,69 +788,54 @@ AttributeError: module 'cv2' has no attribute 'face'
 ```
 
 **Solution:**
-```cmd
+```bash
 pip uninstall opencv-python opencv-contrib-python
-pip install opencv-contrib-python
+pip install opencv-contrib-python==4.8.0.76
 ```
 
-#### 2. Camera Not Opening
+#### 2. Camera Not Working
 
 **Error:**
 ```
-Cannot open camera at index 0
+Cannot open camera 0
 ```
 
 **Solutions:**
-- Check camera connection and drivers
+- Check camera permissions (especially on Linux/macOS)
 - Try different camera index: `--cam 1` or `--cam 2`
-- Ensure no other application is using the camera
-- On Windows, check camera privacy settings
+- Verify camera works with other applications
+- On Linux: `sudo usermod -a -G video $USER` (logout and login)
 
-**Test Camera:**
-```cmd
-python -c "import cv2; cap = cv2.VideoCapture(0); print('Camera working:', cap.isOpened())"
-```
-
-#### 3. No Faces Detected During Training
-
-**Error:**
-```
-[!] Warning: no faces detected in image
-```
+#### 3. No Faces Detected
 
 **Solutions:**
-- Ensure images contain visible faces
-- Check image quality and resolution
-- Verify proper lighting in images
-- Try using pre-cropped face images
+- Ensure adequate lighting
+- Position face clearly in camera view
+- Adjust detection parameters:
+  - Lower `minNeighbors` (default: 5)
+  - Adjust `scaleFactor` (default: 1.1)
+  - Reduce `minSize` (default: 60x60)
 
-#### 4. Model Files Not Found
-
-**Error:**
+```python
+faces = detector.detectMultiScale(
+    gray,
+    scaleFactor=1.05,  # More sensitive
+    minNeighbors=3,    # Lower threshold
+    minSize=(30, 30)   # Smaller minimum
+)
 ```
-RuntimeError: No trained model found. Run train.py first.
-```
 
-**Solution:**
-```cmd
-python train.py --dataset dataset --model-dir model
-```
-
-#### 5. Low Recognition Accuracy
-
-**Symptoms:**
-- Frequent misidentification
-- High confidence scores
-- Missed recognitions
+#### 4. Low Recognition Accuracy
 
 **Solutions:**
-1. **Retrain with more images**: Add 10-20 images per student
-2. **Adjust threshold**: Try lower values (60-70)
-3. **Improve lighting**: Ensure consistent lighting conditions
-4. **Update dataset**: Use images similar to recognition environment
-5. **Check camera quality**: Use higher resolution camera
+- Add more training images (15-20 per person)
+- Vary lighting and angles in training images
+- Adjust confidence threshold:
+  - Lower threshold = stricter matching
+  - Higher threshold = more lenient
+- Retrain model with better quality images
 
-#### 6. Database Permission Errors
+#### 5. Database Permission Error
 
 **Error:**
 ```
@@ -1170,202 +843,418 @@ sqlite3.OperationalError: unable to open database file
 ```
 
 **Solutions:**
-- Check file permissions
-- Ensure directory exists
-- Run with appropriate user permissions
-- Verify disk space available
+- Check file permissions: `chmod 666 attendance.db`
+- Verify directory write permissions
+- Use absolute path for database file
 
-#### 7. SMTP Authentication Failed
-
-**Error:**
-```
-SMTPAuthenticationError: Username and Password not accepted
-```
+#### 6. SMTP Email Errors
 
 **Solutions:**
-- Verify email and password are correct
-- For Gmail: Use App Password, not regular password
-- Enable "Less secure app access" (if applicable)
-- Check SMTP server and port settings
-- Verify TLS settings
+- Enable "Less secure app access" for Gmail (deprecated)
+- Use **App Passwords** for Gmail (recommended)
+- Verify SMTP settings are correct
+- Check firewall/network restrictions
+- Test SMTP connection separately
 
-#### 8. Streamlit Port Already in Use
+#### 7. Streamlit Port Already in Use
 
 **Error:**
 ```
-OSError: [Errno 98] Address already in use
+Address already in use
 ```
 
 **Solution:**
-```cmd
-# Use different port
+```bash
 streamlit run streamlit_app.py --server.port 8502
-
-# Or kill existing process
-# Windows:
-netstat -ano | findstr :8501
-taskkill /PID <PID> /F
-
-# Linux/Mac:
-lsof -ti:8501 | xargs kill -9
 ```
 
-### Performance Optimization
+---
 
-**Slow Recognition:**
-- Reduce camera resolution
-- Increase `minNeighbors` parameter in Haar Cascade
-- Use GPU acceleration (requires CUDA-enabled OpenCV)
-- Optimize image preprocessing
+## 🧪 Testing
 
-**High Memory Usage:**
-- Limit dataset size during training
-- Process images in batches
-- Close unnecessary applications
-- Increase system RAM
+### Run All Tests
 
-### Debug Mode
-
-Enable verbose logging:
-
-```python
-import logging
-logging.basicConfig(level=logging.DEBUG)
+```bash
+python -m pytest tests/ -v
 ```
 
-Add to `attendance_runner.py` or other scripts for detailed output.
+### Run Specific Test
+
+```bash
+python -m pytest tests/test_utils.py -v
+```
+
+### Test Coverage
+
+The test suite covers:
+- ✅ CSV student loading
+- ✅ Database initialization
+- ✅ Attendance marking (idempotent)
+- ✅ Duplicate prevention
+- ✅ Date-based queries
+
+### Manual Testing
+
+#### Test Face Detection
+```bash
+python test_detect_params.py
+```
+
+#### Test Recognition
+```bash
+python test_recognize.py
+```
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how you can help:
+We welcome contributions from developers of all skill levels!
 
-### Ways to Contribute
+### How to Contribute
 
-- 🐛 Report bugs and issues
-- 💡 Suggest new features or enhancements
-- 📝 Improve documentation
-- 🔧 Submit pull requests
-- ⭐ Star the repository
-- 📢 Share with others
-
-### Contribution Guidelines
-
-1. **Fork the Repository**
+1. **Fork** the repository
+2. **Clone** your fork:
    ```bash
    git clone https://github.com/YOUR_USERNAME/attendance-management-system.git
    ```
-
-2. **Create Feature Branch**
+3. **Create** a feature branch:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-
-3. **Make Changes**
-   - Follow existing code style
-   - Add comments for complex logic
-   - Update documentation as needed
-
-4. **Test Your Changes**
+4. **Make** your changes
+5. **Test** your changes:
    ```bash
    python -m pytest tests/
    ```
-
-5. **Commit Changes**
+6. **Commit** with clear messages:
    ```bash
-   git add .
-   git commit -m "Add: Brief description of changes"
+   git commit -m "Add: New feature description"
    ```
-
-6. **Push to Branch**
+7. **Push** to your fork:
    ```bash
    git push origin feature/your-feature-name
    ```
+8. **Open** a Pull Request
 
-7. **Open Pull Request**
-   - Provide clear description
-   - Reference related issues
-   - Wait for review
+### Contribution Guidelines
 
-### Coding Standards
+- ✅ Write clean, readable code
+- ✅ Follow PEP 8 style guidelines
+- ✅ Add tests for new features
+- ✅ Update documentation
+- ✅ Keep changes focused and atomic
+- ✅ Write descriptive commit messages
 
-- Follow PEP 8 style guide for Python
-- Use meaningful variable and function names
-- Add docstrings to functions and classes
-- Keep functions focused and concise
-- Write unit tests for new features
+### Code Style
+
+```bash
+# Format code with Black
+black *.py
+
+# Check with Flake8
+flake8 *.py --max-line-length=100
+```
+
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
+
+---
+
+## 🔒 Security Considerations
+
+### Data Privacy
+- 🔐 Facial data is **sensitive biometric information**
+- 📜 Ensure compliance with **GDPR, CCPA, and local privacy laws**
+- ✅ Obtain **explicit consent** before collecting facial data
+- 🗓️ Implement **data retention policies**
+- 🔒 Consider **encryption** for production databases
+
+### Credential Security
+- ❌ **Never commit** credentials to version control
+- ✅ Use **environment variables** or `.env` files
+- ✅ Use **App Passwords** for email services
+- ✅ Enable **TLS/SSL** for SMTP connections
+- ✅ Implement **access controls** and authentication
+- ✅ Rotate credentials regularly
+
+### Database Security
+- 🔐 SQLite is file-based: **protect file permissions**
+- 🔒 Consider **encryption at rest** for production
+- 💾 Implement **regular backups**
+- 🚫 Restrict database access to authorized users only
+
+### Best Practices
+- Keep dependencies updated: `pip install --upgrade -r requirements.txt`
+- Regular security audits
+- Input validation and sanitization
+- Secure communication channels (HTTPS)
+
+---
+
+## 📊 Performance Considerations
+
+### Optimization Tips
+
+1. **Face Detection Optimization**
+   ```python
+   # Reduce frame processing rate
+   if frame_count % 3 == 0:  # Process every 3rd frame
+       faces = detector.detectMultiScale(gray, ...)
+   ```
+
+2. **Database Optimization**
+   ```python
+   # Create index for faster queries
+   cursor.execute("CREATE INDEX IF NOT EXISTS idx_date ON attendance(date)")
+   ```
+
+3. **Memory Management**
+   - Close database connections after use
+   - Release camera resources properly
+   - Limit image resolution for processing
+
+### Scalability Notes
+
+**Current Limitations:**
+- Single-threaded face recognition
+- Local SQLite database
+- Single camera support
+- No distributed processing
+
+**Future Improvements:**
+- Multi-camera support
+- PostgreSQL/MySQL for larger deployments
+- Redis caching layer
+- Load balancing for API
+- Distributed recognition nodes
+- Batch processing capabilities
+
+---
+
+## 🎯 Use Cases
+
+### Educational Institutions
+- **Classroom Attendance**: Automated student attendance tracking
+- **Exam Halls**: Verification of student identity
+- **Library Access**: Track library usage
+- **Lab Sessions**: Monitor lab attendance
+
+### Corporate Environments
+- **Office Entry**: Employee check-in/check-out
+- **Meeting Rooms**: Track meeting attendance
+- **Shift Management**: Monitor shift timings
+- **Visitor Management**: Log visitor entries
+
+### Events
+- **Conferences**: Attendee tracking
+- **Workshops**: Participant management
+- **Seminars**: Attendance certification
+- **Training Programs**: Completion tracking
+
+---
+
+## 📈 Future Roadmap
+
+### Planned Features
+
+- [ ] **Multi-camera Support**: Simultaneous recognition from multiple cameras
+- [ ] **Mobile App**: iOS and Android applications
+- [ ] **Advanced Analytics**: Attendance trends and insights
+- [ ] **Face Mask Detection**: Recognition with face masks
+- [ ] **Temperature Screening**: Integrate thermal cameras
+- [ ] **Cloud Integration**: AWS/Azure/GCP deployment
+- [ ] **Real-time Notifications**: Push notifications for attendance
+- [ ] **Biometric Integration**: Combine with fingerprint/RFID
+- [ ] **Advanced Reporting**: Customizable reports and dashboards
+- [ ] **Multi-language Support**: Internationalization (i18n)
+- [ ] **Access Control**: Role-based permissions
+- [ ] **Audit Logs**: Complete activity logging
+- [ ] **API Rate Limiting**: Prevent abuse
+- [ ] **WebSocket Support**: Real-time updates
+
+---
+
+## 🔧 Advanced Configuration
+
+### Custom Cascade Classifier
+
+Use custom Haar Cascade files:
+
+```python
+# In train.py or attendance_runner.py
+CASCADE_PATH = "path/to/custom/cascade.xml"
+detector = cv2.CascadeClassifier(CASCADE_PATH)
+```
+
+### Adjust LBPH Parameters
+
+Fine-tune the LBPH recognizer:
+
+```python
+recognizer = cv2.face.LBPHFaceRecognizer_create(
+    radius=1,        # Radius for LBP (default: 1)
+    neighbors=8,     # Number of neighbors (default: 8)
+    grid_x=8,        # Grid cells in X (default: 8)
+    grid_y=8,        # Grid cells in Y (default: 8)
+    threshold=70.0   # Recognition threshold (default: DBL_MAX)
+)
+```
+
+### Database Customization
+
+Use different database backends:
+
+```python
+# PostgreSQL example
+import psycopg2
+
+conn = psycopg2.connect(
+    host="localhost",
+    database="attendance",
+    user="your_username",
+    password="your_password"
+)
+```
+
+---
+
+## 📚 Additional Resources
+
+### Documentation
+- 📖 [Architecture Guide](ARCHITECTURE.md) - Detailed system architecture
+- 📖 [Diagram Guide](DIAGRAM_GUIDE.md) - Architecture visualization
+- 📖 [Contributing Guidelines](CONTRIBUTING.md) - How to contribute
+- 🌐 [Interactive Diagram](architecture.html) - Open in browser
+
+### External Resources
+- [OpenCV Documentation](https://docs.opencv.org/)
+- [LBPH Face Recognition](https://docs.opencv.org/4.x/df/d25/classcv_1_1face_1_1LBPHFaceRecognizer.html)
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [SQLite Documentation](https://www.sqlite.org/docs.html)
+
+### Tutorials
+- [Face Recognition Tutorial](https://www.pyimagesearch.com/2018/09/24/opencv-face-recognition/)
+- [LBPH Algorithm Explained](https://towardsdatascience.com/face-recognition-how-lbph-works-90ec258c3d6b)
+- [Building REST APIs with Flask](https://flask-restful.readthedocs.io/)
+
+---
+
+## ❓ FAQ
+
+### General Questions
+
+**Q: Can this system work offline?**  
+A: Yes! The core attendance recognition works completely offline. Only email notifications require internet.
+
+**Q: How many people can be recognized?**  
+A: The system can handle hundreds of people. Performance depends on training data quality and hardware.
+
+**Q: What accuracy can I expect?**  
+A: With good training data (15-20 images per person), expect 85-95% accuracy in controlled lighting.
+
+**Q: Can it recognize multiple faces simultaneously?**  
+A: Yes, the system detects and recognizes all visible faces in the camera frame.
+
+### Technical Questions
+
+**Q: Why LBPH instead of deep learning?**  
+A: LBPH is lightweight, fast, and works well without GPU. Suitable for edge devices and real-time processing.
+
+**Q: Can I use a different database?**  
+A: Yes, you can modify the database layer in `utils.py` to support PostgreSQL, MySQL, or MongoDB.
+
+**Q: Does it work with IP cameras?**  
+A: Yes, use the RTSP stream URL as the camera source:
+```python
+cap = cv2.VideoCapture("rtsp://username:password@ip:port/stream")
+```
+
+**Q: How do I improve recognition accuracy?**  
+A: 
+1. Use more training images (15-20 per person)
+2. Vary lighting and angles
+3. Ensure high-quality images
+4. Adjust confidence threshold
+5. Use consistent background
+
+### Deployment Questions
+
+**Q: Can I deploy this on a Raspberry Pi?**  
+A: Yes! Install OpenCV and dependencies. May need performance tuning for smooth operation.
+
+**Q: How do I deploy to production?**  
+A: Use production WSGI server (Gunicorn), reverse proxy (Nginx), and secure the application with HTTPS.
+
+**Q: Can I integrate with existing systems?**  
+A: Yes, use the REST API to integrate with any system that can make HTTP requests.
+
+---
+
+## 🐞 Known Issues
+
+1. **Performance on Low-End Hardware**: May be slow on systems with <4GB RAM
+2. **Poor Lighting**: Recognition accuracy drops significantly in dim lighting
+3. **Face Angles**: Side profiles may not be recognized accurately
+4. **Multiple Faces**: Processing speed decreases with many simultaneous faces
+5. **Database Locking**: Concurrent writes may cause SQLite locking issues
+
+### Workarounds
+- Use adequate lighting (500+ lux recommended)
+- Position camera for frontal face capture
+- Limit camera to cover smaller areas
+- Consider PostgreSQL for high-concurrency scenarios
+
+---
+
+## 📞 Support
+
+### Getting Help
+
+- 📧 **Email**: Open an issue on GitHub
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/KunjShah95/attendance-management-system/discussions)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/KunjShah95/attendance-management-system/issues)
+- 📖 **Documentation**: Read [ARCHITECTURE.md](ARCHITECTURE.md) and this README
 
 ### Reporting Issues
 
-When reporting bugs, please include:
+When reporting issues, please include:
+1. **System information** (OS, Python version, OpenCV version)
+2. **Error messages** (full stack trace)
+3. **Steps to reproduce** the issue
+4. **Expected vs actual behavior**
+5. **Screenshots** if applicable
 
-- Operating system and version
-- Python version
-- Steps to reproduce
-- Expected vs actual behavior
-- Error messages and logs
-- Screenshots (if applicable)
+**Template:**
+```markdown
+**Environment:**
+- OS: Ubuntu 22.04
+- Python: 3.10.12
+- OpenCV: 4.8.0
 
-### Feature Requests
+**Issue:**
+Description of the problem...
 
-For new features, please describe:
+**Steps to Reproduce:**
+1. Step 1
+2. Step 2
+3. Step 3
 
-- Use case and motivation
-- Proposed implementation
-- Expected benefits
-- Potential challenges
+**Error Message:**
+```
+Paste error message here
+```
 
-For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+**Expected Behavior:**
+What you expected to happen...
 
----
-
-## 🗺️ Roadmap
-
-### Current Version (v1.0)
-- ✅ LBPH face recognition
-- ✅ Live camera attendance
-- ✅ Streamlit admin dashboard
-- ✅ Flask REST API
-- ✅ Email notifications
-- ✅ CSV/Excel export
-
-### Upcoming Features
-
-#### v1.1 (Q4 2025)
-- [ ] Multi-camera support
-- [ ] Attendance analytics dashboard
-- [ ] Mobile app (React Native)
-- [ ] Docker containerization
-- [ ] Comprehensive test suite
-- [ ] CI/CD pipeline
-
-#### v1.2 (Q1 2026)
-- [ ] Deep learning face recognition (FaceNet/ArcFace)
-- [ ] Real-time dashboard updates (WebSockets)
-- [ ] Role-based access control (RBAC)
-- [ ] Attendance scheduling system
-- [ ] SMS notifications
-- [ ] Multi-language support
-
-#### v2.0 (Q2 2026)
-- [ ] Cloud deployment (AWS/Azure/GCP)
-- [ ] Microservices architecture
-- [ ] Advanced analytics and ML insights
-- [ ] Integration with LMS platforms
-- [ ] Biometric fusion (face + fingerprint)
-- [ ] Blockchain-based audit trail
-
-### Long-term Vision
-- AI-powered anomaly detection
-- Predictive attendance analytics
-- Cross-platform mobile apps
-- Enterprise-grade scalability
-- Compliance certifications (ISO 27001)
+**Actual Behavior:**
+What actually happened...
+```
 
 ---
 
-## 📄 License
+## 📜 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
@@ -1395,74 +1284,69 @@ SOFTWARE.
 
 ---
 
-## 🙏 Acknowledgments
+## 👨‍💻 Maintainers
 
-### Technologies
-
-- **OpenCV** - Computer vision and face detection
-- **Streamlit** - Modern web app framework
-- **Flask** - Lightweight web framework
-- **SQLite** - Embedded database engine
-
-### Inspiration
-
-This project was inspired by the need for contactless, automated attendance systems in educational institutions, especially relevant in the post-pandemic era.
+### Primary Maintainer
+- **Kunj Shah** ([@KunjShah95](https://github.com/KunjShah95))
 
 ### Contributors
+We appreciate all contributors who have helped improve this project!
 
-Thank you to all contributors who have helped improve this project! 🎉
-
-<a href="https://github.com/KunjShah95/attendance-management-system/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=KunjShah95/attendance-management-system" />
-</a>
-
-### Community
-
-- Special thanks to the open-source community
-- OpenCV contributors for the face recognition module
-- Streamlit team for the amazing framework
-- All testers and early adopters
+See the [Contributors](https://github.com/KunjShah95/attendance-management-system/graphs/contributors) page for the full list.
 
 ---
 
-## 📞 Support
+## 🙏 Acknowledgements
 
-### Get Help
+This project was built with the help of various open-source libraries and resources:
 
-- 📖 **Documentation**: Read this README thoroughly
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/KunjShah95/attendance-management-system/discussions)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/KunjShah95/attendance-management-system/issues)
-- 📧 **Email**: kunjshah.23.cse@iite.indusuni.ac.in
+### Technologies & Libraries
+- **OpenCV** - Computer vision and face recognition capabilities
+- **Streamlit** - Interactive web dashboard framework
+- **Flask** - Lightweight web framework for REST API
+- **SQLite** - Embedded database engine
+- **NumPy** - Numerical computing library
+- **Pandas** - Data manipulation and analysis
 
-### Useful Resources
+### Inspiration & References
+- OpenCV Face Recognition Tutorial by PyImageSearch
+- LBPH Algorithm research papers
+- Face Recognition community on GitHub
+- Stack Overflow community
 
-- [OpenCV Documentation](https://docs.opencv.org/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
-- [Flask Documentation](https://flask.palletsprojects.com/)
-- [LBPH Algorithm Explanation](https://towardsdatascience.com/face-recognition-how-lbph-works-90ec258c3d6b)
+### Special Thanks
+- All contributors who have submitted issues, PRs, and suggestions
+- The open-source community for continuous support
+- Educational institutions using and testing this system
 
 ---
 
-## 📊 Project Stats
+## 🌟 Star History
+
+If you find this project useful, please consider giving it a ⭐ on GitHub!
+
+[![Star History Chart](https://api.star-history.com/svg?repos=KunjShah95/attendance-management-system&type=Date)](https://star-history.com/#KunjShah95/attendance-management-system&Date)
+
+---
+
+## 📊 Statistics
 
 ![GitHub stars](https://img.shields.io/github/stars/KunjShah95/attendance-management-system?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/KunjShah95/attendance-management-system?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/KunjShah95/attendance-management-system?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/KunjShah95/attendance-management-system)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/KunjShah95/attendance-management-system)
 ![GitHub last commit](https://img.shields.io/github/last-commit/KunjShah95/attendance-management-system)
-![GitHub repo size](https://img.shields.io/github/repo-size/KunjShah95/attendance-management-system)
 
 ---
 
 <div align="center">
-  <p><strong>Made with ❤️ by <a href="https://github.com/KunjShah95">Kunj Shah</a></strong></p>
-  <p>If you find this project useful, please consider giving it a ⭐!</p>
-  
-  <p>
-    <a href="https://github.com/KunjShah95/attendance-management-system">🏠 Home</a> •
-    <a href="https://github.com/KunjShah95/attendance-management-system/issues">🐛 Report Bug</a> •
-    <a href="https://github.com/KunjShah95/attendance-management-system/issues">💡 Request Feature</a>
-  </p>
-</div>
 
+### 🎓 Built with ❤️ for Education and Innovation
+
+**[⬆ Back to Top](#-attendance-management-system)**
+
+---
+
+**Attendance Management System** © 2025 | Made with Python 🐍
+
+</div>
