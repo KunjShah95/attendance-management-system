@@ -61,6 +61,7 @@
 The **Attendance Management System** is a comprehensive, AI-powered solution for automated attendance tracking using facial recognition technology. Built with Python and leveraging OpenCV's LBPH (Local Binary Patterns Histograms) face recognition algorithm, this system provides a touchless, efficient, and accurate method for managing attendance in educational institutions, offices, or any organization requiring reliable attendance tracking.
 
 The system combines computer vision, machine learning, and modern web technologies to deliver:
+
 - **Real-time face detection and recognition** using webcam/camera feeds
 - **Automated attendance marking** with duplicate prevention
 - **Web-based administrative dashboard** for attendance management
@@ -73,6 +74,7 @@ The system combines computer vision, machine learning, and modern web technologi
 ## ✨ Key Features
 
 ### 🎯 Core Features
+
 - ✅ **Face Recognition-Based Attendance**: Automated attendance marking using LBPH face recognition
 - ✅ **Real-time Processing**: Live camera feed processing for instant attendance marking
 - ✅ **Idempotent Operations**: Prevents duplicate attendance entries for the same person on the same day
@@ -80,6 +82,7 @@ The system combines computer vision, machine learning, and modern web technologi
 - ✅ **Confidence Scoring**: Adjustable confidence threshold for recognition accuracy
 
 ### 📊 Administrative Features
+
 - 📈 **Interactive Dashboard**: Streamlit-based web interface for attendance management
 - 📧 **Email Notifications**: Automatic absent notifications via SMTP
 - 📁 **Data Export**: Export attendance records in CSV and Excel formats
@@ -87,6 +90,7 @@ The system combines computer vision, machine learning, and modern web technologi
 - 🔍 **Student Roster Management**: View and manage student information
 
 ### 🔧 Technical Features
+
 - 🗄️ **SQLite Database**: Lightweight, serverless database for attendance records
 - 🌐 **RESTful API**: Flask-based API for programmatic access
 - 🎨 **Modern UI**: Clean, responsive web interface
@@ -202,6 +206,7 @@ flowchart TB
 ## 🛠️ Technology Stack
 
 ### Core Technologies
+
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **Python** | 3.8+ | Primary programming language |
@@ -210,6 +215,7 @@ flowchart TB
 | **SQLite** | Built-in | Database management |
 
 ### Web Frameworks
+
 | Framework | Purpose |
 |-----------|---------|
 | **Flask** | REST API server |
@@ -217,12 +223,14 @@ flowchart TB
 | **Streamlit** | Interactive web dashboard |
 
 ### Data Processing
+
 | Library | Purpose |
 |---------|---------|
 | **Pandas** | Data manipulation and analysis |
 | **OpenPyXL** | Excel file operations |
 
 ### Additional Libraries
+
 - **Pillow**: Image processing
 - **APScheduler**: Job scheduling
 - **python-dotenv**: Environment configuration
@@ -241,6 +249,7 @@ Before installing the system, ensure you have:
 - **Virtual environment** tool (recommended)
 
 ### System Requirements
+
 - **OS**: Windows 10/11, Linux (Ubuntu 18.04+), macOS (10.14+)
 - **RAM**: Minimum 4GB (8GB recommended)
 - **Storage**: 500MB free space
@@ -260,18 +269,21 @@ cd attendance-management-system
 ### Step 2: Create Virtual Environment (Recommended)
 
 **Linux/macOS:**
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
 **Windows (Command Prompt):**
+
 ```cmd
 python -m venv .venv
 .venv\Scripts\activate.bat
@@ -696,6 +708,7 @@ GET /api/students
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -1047,6 +1060,7 @@ For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
 ### Optimization Tips
 
 1. **Face Detection Optimization**
+
    ```python
    # Reduce frame processing rate
    if frame_count % 3 == 0:  # Process every 3rd frame
@@ -1054,6 +1068,7 @@ For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
    ```
 
 2. **Database Optimization**
+
    ```python
    # Create index for faster queries
    cursor.execute("CREATE INDEX IF NOT EXISTS idx_date ON attendance(date)")
@@ -1071,12 +1086,14 @@ Requirements
 ### Scalability Notes
 
 **Current Limitations:**
+
 - Single-threaded face recognition
 - Local SQLite database
 - Single camera support
 - No distributed processing
 
 **Future Improvements:**
+
 - Multi-camera support
 - PostgreSQL/MySQL for larger deployments
 - Redis caching layer
@@ -1089,18 +1106,21 @@ Requirements
 ## 🎯 Use Cases
 
 ### Educational Institutions
+
 - **Classroom Attendance**: Automated student attendance tracking
 - **Exam Halls**: Verification of student identity
 - **Library Access**: Track library usage
 - **Lab Sessions**: Monitor lab attendance
 
 ### Corporate Environments
+
 - **Office Entry**: Employee check-in/check-out
 - **Meeting Rooms**: Track meeting attendance
 - **Shift Management**: Monitor shift timings
 - **Visitor Management**: Log visitor entries
 
 ### Events
+
 - **Conferences**: Attendee tracking
 - **Workshops**: Participant management
 - **Seminars**: Attendance certification
@@ -1129,19 +1149,23 @@ Requirements
 
 Installation
 Detailed install steps:
+
 - Recommended: use a virtual environment
 - Install dependencies if requirements.txt exists: `pip install -r requirements.txt`
 ---
 
 Configuration
+
 - Database path: by default, utilities use `attendance.db` in the repository root. You can pass a different path to functions that accept `db_path`.
 - Students CSV format: The loader expects a CSV with at least the following columns (header row): `id,name,other(optional)`
+
 ## 🔧 Advanced Configuration
 
 Usage
 ### Custom Cascade Classifier
 
 CLI / Script usage
+
 - The repo is designed to be imported as a small library or executed via small scripts. Example script usage (example/script.py):
 Use custom Haar Cascade files:
 
@@ -1156,6 +1180,7 @@ ensure_db('attendance.db')
 students = load_students('students.csv')
 for s in students[:5]:
     mark_attendance_db(s['id'], s.get('name','Unknown'), db_path='attendance.db')
+
 ### Adjust LBPH Parameters
 
 Fine-tune the LBPH recognizer:
@@ -1192,12 +1217,14 @@ Library usage (importing core utilities)
 ## 📚 Additional Resources
 
 ### Documentation
+
 - 📖 [Architecture Guide](ARCHITECTURE.md) - Detailed system architecture
 - 📖 [Diagram Guide](DIAGRAM_GUIDE.md) - Architecture visualization
 - 📖 [Contributing Guidelines](CONTRIBUTING.md) - How to contribute
 - 🌐 [Interactive Diagram](architecture.html) - Open in browser
 
 ### External Resources
+
 - [OpenCV Documentation](https://docs.opencv.org/)
 - [LBPH Face Recognition](https://docs.opencv.org/4.x/df/d25/classcv_1_1face_1_1LBPHFaceRecognizer.html)
 - [Flask Documentation](https://flask.palletsprojects.com/)
@@ -1205,6 +1232,7 @@ Library usage (importing core utilities)
 - [SQLite Documentation](https://www.sqlite.org/docs.html)
 
 ### Tutorials
+
 - [Face Recognition Tutorial](https://www.pyimagesearch.com/2018/09/24/opencv-face-recognition/)
 - [LBPH Algorithm Explained](https://towardsdatascience.com/face-recognition-how-lbph-works-90ec258c3d6b)
 - [Building REST APIs with Flask](https://flask-restful.readthedocs.io/)
@@ -1241,6 +1269,7 @@ A: Yes, you can modify the database layer in `utils.py` to support PostgreSQL, M
 
 **Q: Does it work with IP cameras?**  
 A: Yes, use the RTSP stream URL as the camera source:
+
 ```python
 from utils import load_students, ensure_db, mark_attendance_db
 cap = cv2.VideoCapture("rtsp://username:password@ip:port/stream")
@@ -1252,6 +1281,7 @@ print('Loaded', len(students), 'students')
 mark_attendance_db(1, 'Alice Example', db_path='attendance.db')
 **Q: How do I improve recognition accuracy?**  
 A: 
+
 1. Use more training images (15-20 per person)
 2. Vary lighting and angles
 3. Ensure high-quality images
@@ -1280,6 +1310,7 @@ A: Yes, use the REST API to integrate with any system that can make HTTP request
 5. **Database Locking**: Concurrent writes may cause SQLite locking issues
 
 ### Workarounds
+
 - Use adequate lighting (500+ lux recommended)
 - Position camera for frontal face capture
 - Limit camera to cover smaller areas
@@ -1353,118 +1384,3 @@ python -m pytest -q
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ```
-MIT License
-
-Copyright (c) 2025 Kunj Shah
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-An example test (already present) verifies loader behavior and idempotent attendance marking by creating a temporary DB and calling ensure_db and mark_attendance_db.
----
-
-## 👨‍💻 Maintainers
-
-### Primary Maintainer
-- **Kunj Shah** ([@KunjShah95](https://github.com/KunjShah95))
-
-### Contributors
-We appreciate all contributors who have helped improve this project!
-
-See the [Contributors](https://github.com/KunjShah95/attendance-management-system/graphs/contributors) page for the full list.
-
----
-
-## 🙏 Acknowledgements
-
-This project was built with the help of various open-source libraries and resources:
-
-### Technologies & Libraries
-- **OpenCV** - Computer vision and face recognition capabilities
-- **Streamlit** - Interactive web dashboard framework
-- **Flask** - Lightweight web framework for REST API
-- **SQLite** - Embedded database engine
-- **NumPy** - Numerical computing library
-- **Pandas** - Data manipulation and analysis
-
-### Inspiration & References
-- OpenCV Face Recognition Tutorial by PyImageSearch
-- LBPH Algorithm research papers
-- Face Recognition community on GitHub
-- Stack Overflow community
-
-### Special Thanks
-- All contributors who have submitted issues, PRs, and suggestions
-- The open-source community for continuous support
-- Educational institutions using and testing this system
-
----
-
-## 🌟 Star History
-
-If you find this project useful, please consider giving it a ⭐ on GitHub!
-
-[![Star History Chart](https://api.star-history.com/svg?repos=KunjShah95/attendance-management-system&type=Date)](https://star-history.com/#KunjShah95/attendance-management-system&Date)
-
----
-
-## 📊 Statistics
-
-![GitHub stars](https://img.shields.io/github/stars/KunjShah95/attendance-management-system?style=social)
-![GitHub forks](https://img.shields.io/github/forks/KunjShah95/attendance-management-system?style=social)
-![GitHub issues](https://img.shields.io/github/issues/KunjShah95/attendance-management-system)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/KunjShah95/attendance-management-system)
-![GitHub last commit](https://img.shields.io/github/last-commit/KunjShah95/attendance-management-system)
-
----
-
-Contributing
-We welcome all contributions. To contribute:
-1. Fork the repository
-2. Create a descriptive branch: `git checkout -b feat/your-feature` or `fix/issue-number`
-3. Add tests for new behavior
-4. Run tests locally: `python -m pytest`
-5. Open a PR with a clear description of the problem and solution
-<div align="center">
-
-Guidelines
-- Keep changes small and focused
-- Write tests for new features and bug fixes
-- Follow PEP8
-- Document new public functions in the README or a docs folder
-### 🎓 Built with ❤️ for Education and Innovation
-
-Troubleshooting
-- If CSV import fails: verify header names and that the file is UTF-8 encoded
-- If DB operations fail: check file permissions and that the path is writable
-**[⬆ Back to Top](#-attendance-management-system)**
-
-License
-This repository is licensed under the MIT License. See LICENSE for details.
----
-
-Maintainers
-- Kunj Shah (@KunjShah95)
-**Attendance Management System** © 2025 | Made with Python 🐍
-
-Acknowledgements
-This README was rebuilt to be clear, accessible, and useful for contributors of all experience levels.
-</div>
-
----
